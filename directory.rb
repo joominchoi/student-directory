@@ -12,6 +12,28 @@ def input_students
       break
     end
 
+    while true do
+      puts "Please enter which cohort this student is in:"
+      puts "If unknown, just hit return"
+      cohort = gets.chomp
+      
+      if cohort == ""
+        cohort = :Unknown
+      else 
+        cohort = cohort.to_sym
+      end
+      
+      puts "Is this correct? Please enter yes or no."
+      input = gets.chomp
+
+      if input.downcase == "no"
+        next
+      else
+        break
+      end
+    
+    end
+
     puts "Please enter their country of birth:"
     country = gets.chomp
 
@@ -37,7 +59,7 @@ def input_students
       country: country, 
       height: height, 
       hobbies: hobbies, 
-      cohort: :november}
+      cohort: cohort}
     
     if students.count == 1
       puts ""
