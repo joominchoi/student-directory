@@ -57,18 +57,18 @@ def input_students
 end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The students of Villains Academy".center(50)
+  puts "-------------".center(50)
 end
 
 def print(students)
   c = 0
   
   while students.length > c
-    puts "#{c + 1}. #{students[c][:name]} (#{students[c][:cohort]} cohort)"
-    puts "Country of birth: #{students[c][:country]}"
-    puts "Height: #{students[c][:height]}"
-    puts "Hobbies: #{students[c][:hobbies]}"
+    puts "#{c + 1}. #{students[c][:name]} (#{students[c][:cohort]} cohort)".center(50)
+    puts "Country of birth: #{students[c][:country]}".center(50)
+    puts "Height: #{students[c][:height]}".center(50)
+    puts "Hobbies: #{students[c][:hobbies]}".center(50)
     puts ""
 
     c += 1
@@ -78,11 +78,11 @@ end
 
 def print_footer(names)
   if names.count == 0
-    puts "We have no students :("
+    puts "We have no students :(".center(50)
   elsif names.count == 1
-    puts "Overall, we have #{names.count} great student."
+    puts "Overall, we have #{names.count} great student.".center(50)
   else
-    puts "Overall, we have #{names.count} great students."
+    puts "Overall, we have #{names.count} great students.".center(50)
   end
 end
 
