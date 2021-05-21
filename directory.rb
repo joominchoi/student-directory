@@ -1,19 +1,58 @@
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
-  # create an empty array
   students = []
-  # get the first name
-  name = gets.chomp
-  # while the name is not empty, repeat this code
-  while !name.empty? do
-    # add the student hash to the array
-    students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students"
-    # get another name from the user
+  
+  puts "Please enter the name of the student:"
+  puts "To finish, just hit return"
+  
+  while true do
+    
     name = gets.chomp
+    
+    if name == ""
+      break
+    end
+
+    puts "Please enter their country of birth:"
+    country = gets.chomp
+
+    if country == ""
+      country = "Unknown"
+    end
+
+    puts "Please enter their height:"
+    height = gets.chomp
+
+    if height == ""
+      height = "Unknown"
+    end
+
+    puts "Please enter their hobbies:"
+    hobbies = gets.chomp
+
+    if hobbies == ""
+      hobbies = "Unknown"
+    end
+
+    students << {name: name, 
+      country: country, 
+      height: height, 
+      hobbies: hobbies, 
+      cohort: :november}
+    
+    if students.count == 1
+      puts ""
+      puts "Now we have #{students.count} student."
+    else
+      puts ""
+      puts "Now we have #{students.count} students."
+    end
+
+    puts ""
+    puts "Please enter the name of the next student:"
+    puts "To finish, just hit return"
+
   end
-  # return the array of students
+  
   students
 end
 
@@ -23,18 +62,30 @@ def print_header
 end
 
 def print(students)
-  count = 0
-  while students.length > count
-    puts "#{count + 1}. #{students[count][:name]} (#{students[count][:cohort]} cohort)"
-    count += 1
+  c = 0
+  
+  while students.length > c
+    puts "#{c + 1}. #{students[c][:name]} (#{students[c][:cohort]} cohort)"
+    puts "Country of birth: #{students[c][:country]}"
+    puts "Height: #{students[c][:height]}"
+    puts "Hobbies: #{students[c][:hobbies]}"
+    puts ""
+
+    c += 1
+
   end
 end
 
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students."
+  if names.count == 0
+    puts "We have no students :("
+  elsif names.count == 1
+    puts "Overall, we have #{names.count} great student."
+  else
+    puts "Overall, we have #{names.count} great students."
+  end
 end
 
-# nothing happens until we call the methods
 students = input_students
 print_header
 print(students)
