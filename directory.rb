@@ -23,10 +23,8 @@ def print_header
 end
 
 def print(students)
-  puts "Please enter the first initial of the students you would like printed"
-  first_initial = gets.chomp
   students.each_with_index do |student, index|
-    if student[:name][0] == first_initial
+    if student[:name].length < 12
       puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
     end
   end
