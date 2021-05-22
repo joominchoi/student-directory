@@ -6,7 +6,7 @@ def input_students
   
   while true do
     
-    name = gets.chomp
+    name = gets.strip
     
     if name == ""
       break
@@ -15,7 +15,7 @@ def input_students
     while true do
       puts "Please enter which cohort this student is in:"
       puts "If unknown, just hit return"
-      cohort = gets.chomp
+      cohort = gets.strip
       
       if cohort == ""
         cohort = :Unknown
@@ -24,7 +24,7 @@ def input_students
       end
       
       puts "Is this correct? Please enter yes or no."
-      input = gets.chomp
+      input = gets.strip
 
       if input.downcase == "no"
         next
@@ -35,21 +35,21 @@ def input_students
     end
 
     puts "Please enter their country of birth:"
-    country = gets.chomp
+    country = gets.strip
 
     if country == ""
       country = "Unknown"
     end
 
     puts "Please enter their height:"
-    height = gets.chomp
+    height = gets.strip
 
     if height == ""
       height = "Unknown"
     end
 
     puts "Please enter their hobbies:"
-    hobbies = gets.chomp
+    hobbies = gets.strip
 
     if hobbies == ""
       hobbies = "Unknown"
