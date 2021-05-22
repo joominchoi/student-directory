@@ -84,19 +84,41 @@ def print_header
 end
 
 def print(students)
-  c = 0
-  
-  while students.length > c
-    puts "#{c + 1}. #{students[c][:name]} (#{students[c][:cohort]} cohort)".center(50)
-    puts "Country of birth: #{students[c][:country]}".center(50)
-    puts "Height: #{students[c][:height]}".center(50)
-    puts "Hobbies: #{students[c][:hobbies]}".center(50)
-    puts ""
 
-    c += 1
+  grouped_by_cohort = {}
+
+  students.each do |student|
+    cohort = student[:cohort]
+    name = student[:name]
+
+    if grouped_by_cohort[cohort] == nil
+      grouped_by_cohort[cohort] = [name]
+    else
+      grouped_by_cohort >> name
+    end
 
   end
+
+  grouped_by_cohort.each do |cohort, name|
+    puts "#{cohort} cohort:".center(50)
+    puts name
+  end
+
 end
+  
+#c = 0
+  
+#  while students.length > c
+#    puts "#{c + 1}. #{students[c][:name]} (#{students[c][:cohort]} cohort)".center(50)
+#    puts "Country of birth: #{students[c][:country]}".center(50)
+#    puts "Height: #{students[c][:height]}".center(50)
+#    puts "Hobbies: #{students[c][:hobbies]}".center(50)
+#    puts ""
+
+#    c += 1
+
+#  end
+#end
 
 def print_footer(names)
   if names.count == 0
