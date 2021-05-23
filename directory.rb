@@ -1,11 +1,10 @@
+@students = [] # an empty array accessible to all methods
+
 def input_students
-  students = []
-  
   puts "Please enter the name of the student:"
   puts "To finish, just hit return"
   
   while true do
-    
     name = gets.strip
     
     if name == ""
@@ -55,18 +54,18 @@ def input_students
       hobbies = "Unknown"
     end
 
-    students << {name: name, 
+    @students << {name: name, 
       country: country, 
       height: height, 
       hobbies: hobbies, 
       cohort: cohort}
     
-    if students.count == 1
+    if @students.count == 1
       puts ""
-      puts "Now we have #{students.count} student."
+      puts "Now we have #{@students.count} student."
     else
       puts ""
-      puts "Now we have #{students.count} students."
+      puts "Now we have #{@students.count} students."
     end
 
     puts ""
@@ -75,7 +74,39 @@ def input_students
 
   end
   
-  students
+  @students
+end
+
+def interactive_menu
+  loop do
+    print_menu
+    process(gets.chomp)
+  end
+end
+
+def print_menu
+  puts "1. Input the students"
+  puts "2. Show the students"
+  puts "9. Exit"
+end
+
+def show_students
+  print_header
+  print_students_list
+  print_footer
+end
+
+def process(selection)
+  case selection
+  when "1"
+    input_students
+  when "2"
+    show_students
+  when "9"
+    exit
+  else
+    puts "I don't know what you mean, try again"
+  end
 end
 
 def print_header
@@ -83,11 +114,11 @@ def print_header
   puts "-------------".center(50)
 end
 
-def print(students)
+def print_students_list
 
   grouped_by_cohort = {}
 
-  students.each do |student|
+  @students.each do |student|
     cohort = student[:cohort]
     name = student[:name]
 
@@ -108,11 +139,11 @@ end
   
 #c = 0
   
-#  while students.length > c
-#    puts "#{c + 1}. #{students[c][:name]} (#{students[c][:cohort]} cohort)".center(50)
-#    puts "Country of birth: #{students[c][:country]}".center(50)
-#    puts "Height: #{students[c][:height]}".center(50)
-#    puts "Hobbies: #{students[c][:hobbies]}".center(50)
+#  while @students.length > c
+#    puts "#{c + 1}. #{@students[c][:name]} (#{@students[c][:cohort]} cohort)".center(50)
+#    puts "Country of birth: #{@students[c][:country]}".center(50)
+#    puts "Height: #{@students[c][:height]}".center(50)
+#    puts "Hobbies: #{@students[c][:hobbies]}".center(50)
 #    puts ""
 
 #    c += 1
@@ -120,17 +151,14 @@ end
 #  end
 #end
 
-def print_footer(names)
-  if names.count == 0
+def print_footer
+  if @students.count == 0
     puts "We have no students :(".center(50)
-  elsif names.count == 1
-    puts "Overall, we have #{names.count} great student.".center(50)
+  elsif @students.count == 1
+    puts "Overall, we have #{@students.count} great student.".center(50)
   else
-    puts "Overall, we have #{names.count} great students.".center(50)
+    puts "Overall, we have #{@students.count} great students.".center(50)
   end
 end
 
-students = input_students
-print_header
-print(students)
-print_footer(students)
+interactive_menu
